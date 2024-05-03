@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:global_configuration/global_configuration.dart';
 
 import 'app_router.dart';
 import 'common/custom_app_localizations.dart';
 import 'common/themes.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await GlobalConfiguration().loadFromAsset("app_settings");
   runApp(const MyApp());
 }
 
