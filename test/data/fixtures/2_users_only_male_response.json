@@ -1,0 +1,122 @@
+{
+  "results": [
+    {
+      "gender": "male",
+      "name": {
+        "title": "Mr",
+        "first": "Alfons",
+        "last": "Kniest"
+      },
+      "location": {
+        "street": {
+          "number": 8112,
+          "name": "Courbetstraat"
+        },
+        "city": "Rijsenhout",
+        "state": "Utrecht",
+        "country": "Netherlands",
+        "postcode": "3283 JE",
+        "coordinates": {
+          "latitude": "35.7961",
+          "longitude": "-166.6372"
+        },
+        "timezone": {
+          "offset": "+11:00",
+          "description": "Magadan, Solomon Islands, New Caledonia"
+        }
+      },
+      "email": "alfons.kniest@example.com",
+      "login": {
+        "uuid": "6fc4bc6d-3476-4e1d-9e27-3ff710b45a51",
+        "username": "whitedog531",
+        "password": "beagle",
+        "salt": "1opCy6eZ",
+        "md5": "2fca999e45018dcc95119cb2a5578bfd",
+        "sha1": "941215dcd82bd2dc4a90afd73661bcd8e79f7b03",
+        "sha256": "d540cc09ff9a999b6d9134c0a6fecff8c1bca606bba1f0628f23d4ebc68fedd4"
+      },
+      "dob": {
+        "date": "1956-07-17T18:31:19.039Z",
+        "age": 67
+      },
+      "registered": {
+        "date": "2021-05-04T04:50:28.455Z",
+        "age": 2
+      },
+      "phone": "(0469) 635817",
+      "cell": "(06) 68099765",
+      "id": {
+        "name": "BSN",
+        "value": "54848687"
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/men/98.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/98.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/98.jpg"
+      },
+      "nat": "NL"
+    },
+    {
+      "gender": "male",
+      "name": {
+        "title": "Mr",
+        "first": "Bernardim",
+        "last": "Peixoto"
+      },
+      "location": {
+        "street": {
+          "number": 9624,
+          "name": "Rua Vinte de Setembro"
+        },
+        "city": "Parnamirim",
+        "state": "Sergipe",
+        "country": "Brazil",
+        "postcode": 25124,
+        "coordinates": {
+          "latitude": "-3.7302",
+          "longitude": "61.4847"
+        },
+        "timezone": {
+          "offset": "-9:00",
+          "description": "Alaska"
+        }
+      },
+      "email": "bernardim.peixoto@example.com",
+      "login": {
+        "uuid": "fa58e2cc-9e1f-4fb9-997e-7dadb63d6521",
+        "username": "tinymouse109",
+        "password": "band",
+        "salt": "qaaM0c2Q",
+        "md5": "1c94c0f82bf06cad46b4f38389aa555a",
+        "sha1": "eb67b7b894f4a2f0031faf586161ec964cb4d4c3",
+        "sha256": "6c1e79ff44dc5d0ebf3a779858b92bc2fe5a2140885a436cd658d824f77513af"
+      },
+      "dob": {
+        "date": "1999-07-30T13:47:08.884Z",
+        "age": 24
+      },
+      "registered": {
+        "date": "2010-09-19T10:17:00.624Z",
+        "age": 13
+      },
+      "phone": "(78) 8754-5907",
+      "cell": "(94) 2837-9832",
+      "id": {
+        "name": "CPF",
+        "value": "615.595.932-83"
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/men/37.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/37.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/37.jpg"
+      },
+      "nat": "BR"
+    }
+  ],
+  "info": {
+    "seed": "78c1a0345ba2fffe",
+    "results": 2,
+    "page": 1,
+    "version": "1.4"
+  }
+}

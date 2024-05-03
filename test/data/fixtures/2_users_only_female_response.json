@@ -1,0 +1,122 @@
+{
+  "results": [
+    {
+      "gender": "female",
+      "name": {
+        "title": "Mrs",
+        "first": "Gloria",
+        "last": "Sutton"
+      },
+      "location": {
+        "street": {
+          "number": 6163,
+          "name": "Marsh Ln"
+        },
+        "city": "Tampa",
+        "state": "Louisiana",
+        "country": "United States",
+        "postcode": 14445,
+        "coordinates": {
+          "latitude": "85.4895",
+          "longitude": "-47.1498"
+        },
+        "timezone": {
+          "offset": "+5:00",
+          "description": "Ekaterinburg, Islamabad, Karachi, Tashkent"
+        }
+      },
+      "email": "gloria.sutton@example.com",
+      "login": {
+        "uuid": "e8b97e50-d251-4a5f-a898-9c91cf5b78d8",
+        "username": "organicleopard624",
+        "password": "kajak",
+        "salt": "1iwfNw85",
+        "md5": "461ba883c337af40afca48fbb9f27fd9",
+        "sha1": "f1f2bf5577ee6cf496a23040f0dd26897cd42d83",
+        "sha256": "cf32f24911c98682761a9350f217bed58e8a87ac464f7ecb46f8e89424015ac1"
+      },
+      "dob": {
+        "date": "1987-09-10T03:52:18.690Z",
+        "age": 36
+      },
+      "registered": {
+        "date": "2014-02-18T23:36:55.669Z",
+        "age": 10
+      },
+      "phone": "(893) 745-8504",
+      "cell": "(983) 310-4758",
+      "id": {
+        "name": "SSN",
+        "value": "663-27-8215"
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/8.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/8.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/8.jpg"
+      },
+      "nat": "US"
+    },
+    {
+      "gender": "female",
+      "name": {
+        "title": "Miss",
+        "first": "Rika",
+        "last": "Peixoto"
+      },
+      "location": {
+        "street": {
+          "number": 6124,
+          "name": "Rua Três"
+        },
+        "city": "Salvador",
+        "state": "Ceará",
+        "country": "Brazil",
+        "postcode": 84123,
+        "coordinates": {
+          "latitude": "-88.0023",
+          "longitude": "-10.4218"
+        },
+        "timezone": {
+          "offset": "-1:00",
+          "description": "Azores, Cape Verde Islands"
+        }
+      },
+      "email": "rika.peixoto@example.com",
+      "login": {
+        "uuid": "fc53206b-8daa-463c-9428-1cb369ec3dd2",
+        "username": "goldengorilla606",
+        "password": "stocks",
+        "salt": "2jIlwsfe",
+        "md5": "4b2b2bff635ff03a470b06e66a1c2df7",
+        "sha1": "6a1ba134d8af9326bb1d3907958d8b370cb25d8f",
+        "sha256": "696a376e7e04ac69981e707cf432839b8ac7880ea16ce856723b193e539652e1"
+      },
+      "dob": {
+        "date": "1961-02-13T19:38:04.454Z",
+        "age": 63
+      },
+      "registered": {
+        "date": "2006-12-06T08:37:40.702Z",
+        "age": 17
+      },
+      "phone": "(66) 0420-2120",
+      "cell": "(29) 6153-2546",
+      "id": {
+        "name": "CPF",
+        "value": "146.058.229-47"
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/77.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/77.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/77.jpg"
+      },
+      "nat": "BR"
+    }
+  ],
+  "info": {
+    "seed": "36d246be25a75b58",
+    "results": 2,
+    "page": 1,
+    "version": "1.4"
+  }
+}
