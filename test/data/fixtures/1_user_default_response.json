@@ -1,0 +1,66 @@
+{
+  "results": [
+    {
+      "gender": "female",
+      "name": {
+        "title": "Ms",
+        "first": "Lucille",
+        "last": "Hansen"
+      },
+      "location": {
+        "street": {
+          "number": 3605,
+          "name": "E Pecan St"
+        },
+        "city": "Hobart",
+        "state": "Australian Capital Territory",
+        "country": "Australia",
+        "postcode": 3174,
+        "coordinates": {
+          "latitude": "-83.7597",
+          "longitude": "145.9311"
+        },
+        "timezone": {
+          "offset": "+10:00",
+          "description": "Eastern Australia, Guam, Vladivostok"
+        }
+      },
+      "email": "lucille.hansen@example.com",
+      "login": {
+        "uuid": "95df5371-5167-48ff-82d4-4f951c0b6a06",
+        "username": "crazyelephant975",
+        "password": "steve",
+        "salt": "hyDH70ak",
+        "md5": "e2de5e76c0b2fddde7839d0051c93242",
+        "sha1": "3fbd9b001114e3fa479a28a3a2f7d3513f0214e1",
+        "sha256": "7744adca166a22b256656c29cb45ba969de3d3017ac875f137e6e376f31b28e1"
+      },
+      "dob": {
+        "date": "1979-08-31T01:26:45.754Z",
+        "age": 44
+      },
+      "registered": {
+        "date": "2009-01-30T12:37:24.045Z",
+        "age": 15
+      },
+      "phone": "07-0736-0416",
+      "cell": "0440-764-278",
+      "id": {
+        "name": "TFN",
+        "value": "967183968"
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/7.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/7.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/7.jpg"
+      },
+      "nat": "AU"
+    }
+  ],
+  "info": {
+    "seed": "05be2ba08cf917a2",
+    "results": 1,
+    "page": 1,
+    "version": "1.4"
+  }
+}
