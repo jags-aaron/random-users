@@ -168,22 +168,4 @@ void main() {
           )).called(1);
     },
   );
-
-  test(
-      'toQueryParams should throw AssertionError when both include and exclude are not null',
-      () {
-    expect(
-        () => Filter(include: [Include.gender], exclude: [Exclude.gender])
-            .toQueryParams(),
-        throwsA(isA<AssertionError>()));
-  });
-
-  test(
-      'toQueryParams should throw AssertionError when results is not between 1 and 5000',
-      () {
-    expect(() => Filter(results: 0).toQueryParams(),
-        throwsA(isA<AssertionError>()));
-    expect(() => Filter(results: 5001).toQueryParams(),
-        throwsA(isA<AssertionError>()));
-  });
 }

@@ -1,4 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 
 import '../model/filter.dart';
 
@@ -17,7 +18,7 @@ class LocalSourceImpl implements LocalSource {
 
   @override
   Future<void> saveFilters({required Filter filter}) async {
-    await sharedPreferences.setInt('results', filter.results ?? 1);
+    await sharedPreferences.setInt('results', filter.results ?? 5);
     await sharedPreferences.setString('gender', filter.gender?.name ?? '');
     await sharedPreferences.setStringList('nationality',
         filter.nationality?.map((e) => e.name).toList() ?? List.empty());
@@ -30,26 +31,30 @@ class LocalSourceImpl implements LocalSource {
 
   @override
   Future<Filter> getFilters() async {
-    final results = sharedPreferences.getInt('results') ?? 1;
-    final gender = sharedPreferences.getString('gender') ?? '';
-    final nationality = sharedPreferences.getStringList('nationality') ?? List.empty();
-    final page = sharedPreferences.getInt('page') ?? 1;
-    final include = sharedPreferences.getStringList('include') ?? List.empty();
-    final exclude = sharedPreferences.getStringList('exclude') ?? List.empty();
+    final int? results = sharedPreferences.getInt('results');
+    final String? gender = sharedPreferences.getString('gender');
+    final List<String>? nationality =
+        sharedPreferences.getStringList('nationality');
+    final int? page = sharedPreferences.getInt('page');
+    final List<String>? include = sharedPreferences.getStringList('include');
+    final List<String>? exclude = sharedPreferences.getStringList('exclude');
 
     return Filter(
-      results: results,
-      gender: Gender.values.firstWhere((element) => element.name == gender),
+      results: results ?? 10,
+      gender:
+          Gender.values.firstWhereOrNull((element) => element.name == gender),
       nationality: nationality
-          .map((e) =>
+          ?.map((e) =>
               Nationality.values.firstWhere((element) => element.name == e))
           .toList(),
       page: page,
       include: include
-          .map((e) => Include.values.firstWhere((element) => element.name == e))
+          ?.map(
+              (e) => Include.values.firstWhere((element) => element.name == e))
           .toList(),
       exclude: exclude
-          .map((e) => Exclude.values.firstWhere((element) => element.name == e))
+          ?.map(
+              (e) => Exclude.values.firstWhere((element) => element.name == e))
           .toList(),
     );
   }

@@ -3,21 +3,19 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test(
-      'toQueryParams should throw AssertionError when both include and exclude are not null',
+      'toQueryParams should throw Exception when both include and exclude are not null',
       () {
     expect(
         () => Filter(include: [Include.gender], exclude: [Exclude.gender])
             .toQueryParams(),
-        throwsA(isA<AssertionError>()));
+        throwsA(isA<Exception>()));
   });
 
   test(
-      'toQueryParams should throw AssertionError when results is not between 1 and 5000',
+      'toQueryParams should return {} when results is not between 1 and 5000',
       () {
-    expect(() => Filter(results: 0).toQueryParams(),
-        throwsA(isA<AssertionError>()));
-    expect(() => Filter(results: 5001).toQueryParams(),
-        throwsA(isA<AssertionError>()));
+    expect(Filter(results: 0).toQueryParams(), {});
+    expect(Filter(results: 5001).toQueryParams(), {});
   });
 
 

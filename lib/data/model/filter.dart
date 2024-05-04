@@ -1,3 +1,6 @@
+import 'package:ansicolor/ansicolor.dart';
+import 'package:flutter/material.dart';
+
 enum Gender {
   male,
   female,
@@ -72,14 +75,12 @@ class Filter {
   Map<String, dynamic> toQueryParams() {
     final queryParams = <String, dynamic>{};
 
-    assert(
-      (include == null || exclude == null),
-      'include and exclude can\'t be used together',
-    );
-    assert(
-      (results == null || (results ?? -1) > 0 && (results ?? -1) < 5000),
-      'results should be between 1 and 5000',
-    );
+    if(include?.isNotEmpty == true && exclude?.isNotEmpty == true){
+      throw Exception('>>>>>>>> You can only INCLUDE or EXCLUDE fields, not both. <<<<<<<<');
+    }
+    if((results ?? -1) < 0 && (results ?? -1) > 5000) {
+      throw Exception('>>>>>>>> Results must be between 0 and 5000 <<<<<<<<');
+    }
 
     /*
     * Requesting Multiple Users
@@ -127,8 +128,9 @@ class Filter {
     * in order to get back the same results
     * https://randomuser.me/api/?page=3&results=10&seed=abc
     * */
-    if (page != null && (page ?? -1) > 0) {
-      queryParams['page'] = page.toString();
+    if (page != null) {
+      // queryParams['page'] = page.toString();
+      // TODO: Implement pagination
     }
 
     /*
