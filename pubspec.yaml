@@ -35,7 +35,7 @@ dependencies:
   intl: any
   flutter_bloc: ^8.1.3
   get_it: ^7.6.4
-  go_router: ^12.0.0
+  go_router: ^14.0.2
   flex_color_scheme: ^7.3.1
   google_fonts: ^6.2.1
   equatable: ^2.0.3
@@ -46,6 +46,7 @@ dependencies:
   talker_dio_logger: ^4.1.3
   global_configuration: ^2.0.0
   shared_preferences: ^2.0.7
+  provider: ^6.0.5
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -58,6 +59,7 @@ dev_dependencies:
   mocktail: ^0.2.0
   bloc_test: 9.1.6
   build_runner: ^2.2.0
+  mocktail_image_network:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
