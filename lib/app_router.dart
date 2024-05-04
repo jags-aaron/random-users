@@ -1,7 +1,7 @@
+import 'package:club_hub_tech_test/navigation/detail_route.dart';
+import 'package:club_hub_tech_test/navigation/home_route.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
-import 'feature/home/home_route.dart';
 
 /// Provides access to the mainNavigator of the app throughout the app.
 final GlobalKey<NavigatorState> navKey = GlobalKey<NavigatorState>();
