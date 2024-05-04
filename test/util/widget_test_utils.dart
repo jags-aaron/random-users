@@ -1,8 +1,25 @@
+import 'package:club_hub_tech_test/common/custom_app_localizations.dart';
+import 'package:club_hub_tech_test/domain/entity/user.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:provider/provider.dart';
+
+User tUser = User(
+  gender: '',
+  nationality: '',
+  name: '',
+  location: '',
+  email: '',
+  dob: '',
+  phone: '',
+  id: '',
+  picture:
+      'https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0=',
+);
 
 class MockBuildContext extends Mock implements BuildContext {}
 
@@ -24,6 +41,14 @@ Widget wrapWithMockProviders(
         create: (context) => MockBloc(),
         child: child,
       ),
+      locale: const Locale('es'),
+      supportedLocales: const <Locale>[Locale('es')],
+      localizationsDelegates: const [
+        CustomAppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
     ),
   );
 }
