@@ -110,6 +110,10 @@ sequenceDiagram
     deactivate Flutter
 ```
 
+## 📦 How to Run the Web App with Docker
+
+    TBD
+
 ## ADR (Architecture Decision Record)
 
 - [ADR-001](https://docs.google.com/document/d/1grFuMU7aMrDAgL1tGQzoQGrYPDRRUOGfAapWPiFm4Vc/edit?usp=sharing)
