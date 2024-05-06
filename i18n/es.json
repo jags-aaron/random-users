@@ -1,6 +1,11 @@
 {
   "home": {
-    "title": "Some title from i18n"
+    "title": "Random Users",
+    "error": {
+      "title": "Error",
+      "message": "Error Message ${error}",
+      "ok": "Ok"
+    }
   },
   "detail": {
     "title": "Detail Title"

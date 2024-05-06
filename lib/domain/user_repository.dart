@@ -26,24 +26,27 @@ class UserRepositoryImp implements UserRepository {
   Future<List<User>> fetchRandomUsers({
     required Filter filter,
   }) async {
-    const defaultPicture =
-        'https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0=';
-    final modelResponse = await remoteSource.fetchRandomUsers(filter: filter);
-    final results = modelResponse.results
-        ?.map((model) => User(
-              gender: '${model.gender}',
-              nationality: '${model.nat}',
-              name: '${model.name?.first} ${model.name?.last}',
-              location: '${model.location?.city}, ${model.location?.state}',
-              email: '${model.email}',
-              dob: '${model.dob}',
-              phone: '${model.phone}',
-              id: '${model.id?.value}',
-              picture: model.picture?.large ?? defaultPicture
-            ))
-        .toList();
+    try {
+      const defaultPicture =
+          'https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0=';
+      final modelResponse = await remoteSource.fetchRandomUsers(filter: filter);
+      final results = modelResponse.results
+          ?.map((model) => User(
+          gender: '${model.gender}',
+          nationality: '${model.nat}',
+          name: '${model.name?.first} ${model.name?.last}',
+          location: '${model.location?.city}, ${model.location?.state}',
+          email: '${model.email}',
+          dob: '${model.dob?.date}',
+          phone: '${model.phone}',
+          id: '${model.id?.value}',
+          picture: model.picture?.large ?? defaultPicture
+      )).toList();
 
-    return results ?? [];
+      return results ?? [];
+    } catch (e) {
+      throw Exception(e.toString());
+    }
   }
 
   @override

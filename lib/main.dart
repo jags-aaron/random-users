@@ -1,4 +1,6 @@
+import 'package:club_hub_tech_test/presenter/_widgets/presentation_frame.dart';
 import 'package:club_hub_tech_test/presenter/home/bloc/home_bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:global_configuration/global_configuration.dart';
@@ -9,6 +11,7 @@ import 'package:talker_flutter/talker_flutter.dart';
 import 'app_router.dart';
 import 'common/custom_app_localizations.dart';
 import 'common/mobile_platform_client.dart';
+import 'common/scroll_behavior.dart';
 import 'common/themes.dart';
 import 'data/source/local_source.dart';
 import 'data/source/remote_source.dart';
@@ -34,6 +37,8 @@ Future<Widget> globalProvidersSetup({required Widget child}) async {
       Provider<Talker>.value(
         value: TalkerFlutter.init(
           settings: TalkerSettings(
+            useConsoleLogs: true,
+            enabled: true,
             colors: <TalkerLogType, AnsiPen>{
               TalkerLogType.error: AnsiPen()..red(),
               TalkerLogType.exception: AnsiPen()..red(bg: true),
@@ -83,6 +88,7 @@ class MyApp extends StatelessWidget {
     return blocProviders(
       context: context,
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
@@ -90,21 +96,24 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        home: MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          title: 'Random Users',
-          theme: lightTheme(),
-          darkTheme: darkTheme(),
-          themeMode: ThemeMode.light,
-          routerConfig: appRouter,
-          locale: const Locale('es'),
-          supportedLocales: const <Locale>[Locale('es')],
-          localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
-            CustomAppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
+        home: PresentationFrame(
+          child: MaterialApp.router(
+            scrollBehavior: kIsWeb ? WebScrollBehavior() : null,
+            debugShowCheckedModeBanner: false,
+            title: 'Random Users',
+            theme: lightTheme(),
+            darkTheme: darkTheme(),
+            themeMode: ThemeMode.light,
+            routerConfig: appRouter,
+            locale: const Locale('es'),
+            supportedLocales: const <Locale>[Locale('es')],
+            localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
+              CustomAppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+          ),
         ),
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:club_hub_tech_test/domain/entity/user.dart';
 import 'package:club_hub_tech_test/presenter/home/home_model.dart';
 import 'package:club_hub_tech_test/presenter/home/home_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -11,13 +12,18 @@ class MockHomeModel extends Mock implements HomeModel {}
 
 void main() {
 
+  final user1 = tUser.copyWith(id: "1");
+
+  setUpAll(() {
+    registerFallbackValue(user1);
+  });
+
   group('HomeScreen', () {
     testWidgets('screen renders correctly', (tester) async {
       final model = MockHomeModel();
-      final user1 = tUser.copyWith(id: "1");
       when(() => model.title).thenReturn('title');
-      when(() => model.users).thenAnswer((_) => [user1, tUser.copyWith(id: "2")]);
-      when(() => model.userPressed(user1)).thenAnswer((_) => () {});
+      when(() => model.users).thenAnswer((_) => [user1]);
+      when(() => model.userPressed(user1)).thenAnswer((_) => (user) => () {});
       when(() => model.showSettings()).thenAnswer((_) => () {});
 
       await mockNetworkImages(() async {
@@ -28,11 +34,19 @@ void main() {
         await tester.pumpAndSettle();
       });
 
+      // click on the filter button
       await tester.tap(find.byKey(const Key('button-filter-key')));
       await tester.pumpAndSettle();
       verify(() => model.showSettings()).called(1);
 
-      // TODO Add more tests
+      // click on the first user
+      await tester.tap(find.byKey(const Key('user-key-1')));
+      await tester.pumpAndSettle();
+      verify(() => model.userPressed(user1)).called(1);
+
+      // perform scroll to test if the list is scrollable
+      await tester.fling(find.byType(ListView), const Offset(0, -200), 3000);
+      await tester.pumpAndSettle();
     });
   });
 }

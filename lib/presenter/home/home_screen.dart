@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'home_model.dart';
@@ -33,7 +34,7 @@ class HomeScreen extends StatelessWidget {
               child: Card(
                 elevation: 2,
                 child: ListTile(
-                  key: Key('user-list-tile-key-${user.id}'),
+                  key: Key('user-key-${user.id}'),
                   title: Text(
                     user.name,
                     style: const TextStyle(
@@ -44,11 +45,14 @@ class HomeScreen extends StatelessWidget {
                     user.email,
                   ),
                   onTap: () {
-                    model.userPressed(user);
+                    final foo = model.userPressed(user);
+                    foo();
                   },
-                  trailing: Image.network(
-                    user.picture,
+                  trailing: Image(
                     fit: BoxFit.cover,
+                    image: CachedNetworkImageProvider(
+                      user.picture,
+                    ),
                   ),
                 ),
               ),

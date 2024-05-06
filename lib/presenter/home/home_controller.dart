@@ -26,16 +26,23 @@ class HomeController extends StatelessWidget {
     return BlocConsumer<HomeBloc, BlocHomeState>(
       listener: (context, state) {
         if (state.status == BlocHomeResult.error) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(i18n.translate('home.error')),
-              action: SnackBarAction(
-                label: i18n.translate('home.retry'),
-                onPressed: () {
-                  bloc.add(InitialEvent());
-                },
-              ),
-            ),
+          // show error dialog
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(i18n.translate('home.error.title')),
+                content: Text('${state.error}'),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text(i18n.translate('home.error.ok')),
+                  ),
+                ],
+              );
+            },
           );
         }
       },
@@ -59,7 +66,6 @@ class HomeController extends StatelessWidget {
               showModalBottomSheet(
                 useRootNavigator: true,
                 enableDrag: true,
-                scrollControlDisabledMaxHeightRatio: 0.9,
                 context: context,
                 builder: (BuildContext context) {
                   return FilterScreen(

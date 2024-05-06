@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import '../../domain/entity/user.dart';
@@ -55,7 +56,12 @@ class UserCard extends StatelessWidget {
             SizedBox(
               height: 150,
               width: 150,
-              child: Image.network(user.picture, fit: BoxFit.cover),
+              child: Image(
+                fit: BoxFit.cover,
+                image: CachedNetworkImageProvider(
+                  user.picture,
+                ),
+              ),
             ),
           ],
         ),

@@ -1,9 +1,7 @@
-import 'package:ansicolor/ansicolor.dart';
+import 'package:club_hub_tech_test/common/app_interceptors.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:global_configuration/global_configuration.dart';
-import 'package:talker_dio_logger/talker_dio_logger_interceptor.dart';
-import 'package:talker_dio_logger/talker_dio_logger_settings.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
 abstract class PlatformClient {
@@ -46,7 +44,7 @@ class PlatformClientImp extends PlatformClient {
       // Overrides any HTTP directive to delete entry past this duration.
       // Useful only when origin server has no cache config or custom behaviour is desired.
       // Defaults to [null].
-      maxStale: const Duration(days: 7),
+      maxStale: const Duration(seconds: 5),
       // Default. Allows 3 cache sets and ease cleanup.
       priority: CachePriority.normal,
       // Default. Body and headers encryption with your own algorithm.
@@ -59,18 +57,7 @@ class PlatformClientImp extends PlatformClient {
     );
     dio.interceptors.addAll([
       DioCacheInterceptor(options: cacheOptions),
-      TalkerDioLogger(
-        talker: talker,
-        settings: TalkerDioLoggerSettings(
-          printRequestHeaders: false,
-          printResponseHeaders: false,
-          printRequestData: true,
-          printResponseData: false,
-          printResponseMessage: false,
-          requestPen: AnsiPen()..blue(),
-          responsePen: AnsiPen()..green(),
-        ),
-      ),
+      AppInterceptors(talker: talker),
     ]);
 
     return dio;

@@ -25,6 +25,16 @@ class MockBuildContext extends Mock implements BuildContext {}
 
 class MockBloc extends Mock implements Bloc {}
 
+Future<void> emitsExactly<B extends Bloc, S>(
+    B bloc,
+    List<S> states,
+    ) async {
+  await expectLater(
+    bloc.stream,
+    emitsInOrder(states),
+  );
+}
+
 Widget wrapWithMockProviders(
   Widget child, {
   Map<String, IconData> images = const {},

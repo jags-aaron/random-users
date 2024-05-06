@@ -1,4 +1,3 @@
-import 'package:club_hub_tech_test/data/model/filter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -44,6 +43,7 @@ class HomeBloc extends Bloc<BlocHomeEvent, BlocHomeState> {
       emit(
         state.copyWith(
           status: BlocHomeResult.error,
+          error: e.toString(),
         ),
       );
     }
@@ -77,6 +77,7 @@ class HomeBloc extends Bloc<BlocHomeEvent, BlocHomeState> {
       emit(
         state.copyWith(
           status: BlocHomeResult.error,
+          error: e.toString(),
         ),
       );
     }

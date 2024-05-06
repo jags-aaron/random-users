@@ -64,7 +64,7 @@ class _AppLocalizationsDelegate
 
   @override
   Future<CustomAppLocalizations> load(Locale locale) async {
-    final CustomAppLocalizations localizations = CustomAppLocalizations(locale: locale);
+    final CustomAppLocalizations localizations = CustomAppLocalizations(locale: locale,);
     await localizations.load();
     return localizations;
   }

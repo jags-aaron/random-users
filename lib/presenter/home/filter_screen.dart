@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart';
 
 import '../../data/model/filter.dart';
 
@@ -19,12 +18,15 @@ class FilterScreen extends StatefulWidget {
 }
 
 class _FilterScreenState extends State<FilterScreen> {
-  final TextEditingController _numberOfUsersController = TextEditingController();
+  final TextEditingController _numberOfUsersController =
+      TextEditingController();
   int? _numberOfUsers;
   Gender? _selectedGender;
   final List<Nationality> _selectedNationalities = [];
   final List<Include> _selectedIncludes = [];
   final List<Exclude> _selectedExcludes = [];
+
+  bool initialState = true;
 
   void restoreFilters() {
     _numberOfUsersController.text = '10';
@@ -33,23 +35,60 @@ class _FilterScreenState extends State<FilterScreen> {
     _selectedNationalities.clear();
     _selectedIncludes.clear();
     _selectedExcludes.clear();
+    setState(() {});
+  }
+
+  bool _invalidNumber() {
+    if(_numberOfUsersController.text.isEmpty) {
+      return true;
+    }
+    if(_numberOfUsers == null || _numberOfUsersController.text.isEmpty) {
+      return false;
+    }
+    if (_numberOfUsers == null ||
+        _numberOfUsers! < 1 ||
+        _numberOfUsers! > 5000) {
+      return true;
+    }
+    return false;
   }
 
   @override
   Widget build(BuildContext context) {
-
-    if(_numberOfUsers == null) {
+    if (initialState) {
       _numberOfUsersController.text = widget.filter?.results?.toString() ?? '';
       _numberOfUsers = widget.filter?.results;
       _selectedGender = widget.filter?.gender;
       _selectedNationalities.addAll(widget.filter?.nationality?.toList() ?? []);
       _selectedIncludes.addAll(widget.filter?.include?.toList() ?? []);
       _selectedExcludes.addAll(widget.filter?.exclude?.toList() ?? []);
+      initialState = false;
     }
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Manage Filters'),
+        leading: IconButton(
+          iconSize: 25,
+          icon: const Icon(Icons.close),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              restoreFilters();
+            },
+            child: const Text(
+              'Restore',
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.blue,
+              ),
+            ),
+          ),
+        ],
       ),
       body: SafeArea(
         child: Column(
@@ -65,15 +104,30 @@ class _FilterScreenState extends State<FilterScreen> {
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: TextField(
                           controller: _numberOfUsersController,
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
                           onChanged: (value) {
                             _numberOfUsers = int.tryParse(value);
+                            setState(() {});
                           },
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             labelText: '1 to 5000 (max)',
+                            error: _invalidNumber()
+                                ? const Text(
+                                    'Invalid number',
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                    ),
+                                  )
+                                : null,
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20,),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       Card(
                         child: DropdownButton<Gender>(
                           value: _selectedGender,
@@ -97,8 +151,10 @@ class _FilterScreenState extends State<FilterScreen> {
                           title: const Text('Nationality'),
                           children: Nationality.values.map((nationality) {
                             return CheckboxListTile(
-                              title: Text(nationality.toString().split('.').last),
-                              value: _selectedNationalities.contains(nationality),
+                              title:
+                                  Text(nationality.toString().split('.').last),
+                              value:
+                                  _selectedNationalities.contains(nationality),
                               onChanged: (checked) {
                                 setState(() {
                                   if (checked == true) {
@@ -121,7 +177,7 @@ class _FilterScreenState extends State<FilterScreen> {
                               value: _selectedIncludes.contains(include),
                               onChanged: (checked) {
                                 setState(() {
-                                  if(_selectedExcludes.isNotEmpty) {
+                                  if (_selectedExcludes.isNotEmpty) {
                                     _selectedExcludes.clear();
                                   }
                                   if (checked == true) {
@@ -144,7 +200,7 @@ class _FilterScreenState extends State<FilterScreen> {
                               value: _selectedExcludes.contains(exclude),
                               onChanged: (checked) {
                                 setState(() {
-                                  if(_selectedIncludes.isNotEmpty) {
+                                  if (_selectedIncludes.isNotEmpty) {
                                     _selectedIncludes.clear();
                                   }
                                   if (checked == true) {
@@ -163,44 +219,25 @@ class _FilterScreenState extends State<FilterScreen> {
                 ),
               ),
             ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.black,
-                backgroundColor: Colors.blue,
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 40.0),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.blue,
+                ),
+                onPressed: () {
+                  widget.saveFilter(Filter(
+                    results: _numberOfUsers,
+                    include: _selectedIncludes,
+                    exclude: _selectedExcludes,
+                    gender: _selectedGender,
+                    nationality: _selectedNationalities,
+                  ));
+                },
+                child: const Text('Apply Filters'),
               ),
-              onPressed: () {
-                widget.saveFilter(
-                    Filter(
-                      results: _numberOfUsers,
-                      include: _selectedIncludes,
-                      exclude: _selectedExcludes,
-                      gender: _selectedGender,
-                      nationality: _selectedNationalities,
-                    )
-                );
-              },
-              child: const Text('Apply Filters'),
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.black,
-                backgroundColor: Colors.blue,
-              ),
-              onPressed: () {
-                restoreFilters();
-                setState(() {
-                  widget.saveFilter(
-                      Filter(
-                        results: _numberOfUsers,
-                        include: _selectedIncludes,
-                        exclude: _selectedExcludes,
-                        gender: _selectedGender,
-                        nationality: _selectedNationalities,
-                      )
-                  );
-                });
-              },
-              child: const Text('Restore Filters'),
             ),
           ],
         ),
